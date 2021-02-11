@@ -11,7 +11,7 @@ LinkedQueue* createLinkedQueue() {
     if (pReturn != NULL) {
         memset(pReturn, 0, sizeof (LinkedQueue));
     } else {
-        printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½, createLinkedQueue()\n");
+        printf("¿À·ù, ¸Þ¸ð¸® ÇÒ´ç, createLinkedQueue()\n");
     }
 
     return pReturn;
@@ -24,22 +24,22 @@ int enqueueLinkedQueue(LinkedQueue* pQueue, QueueNode element) {
     if (pQueue != NULL) {
         pNode = (QueueNode*)malloc(sizeof (QueueNode));
         if (pNode != NULL) {
-            *pNode = element;       // ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ú·á°ª ï¿½ï¿½ï¿½ï¿½
-            pNode->pLink = NULL;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ NULL ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            *pNode = element;       // »õ·Î¿î ÀÚ·á°ª ´ëÀÔ
+            pNode->pLink = NULL;    // ´ÙÀ½ ³ëµå¸¦ NULL ·Î ÁöÁ¤
 
             if (isLinkedQueueEmpty(pQueue) == TRUE) {
-                // ï¿½ï¿½ï¿½ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½
+                // °ø¹é Å¥ÀÇ °æ¿ì
                 pQueue->pFrontNode = pNode;
                 pQueue->pRearNode = pNode;
             } else {
-                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ Å¥ï¿½ï¿½ ï¿½ï¿½ï¿½
+                // °ø¹éÀÌ ¾Æ´Ñ Å¥ÀÇ °æ¿ì
                 pQueue->pRearNode->pLink = pNode;
                 pQueue->pRearNode = pNode;
             }
             pQueue->currentElementCount++;
             ret = TRUE;
         } else {
-            printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½, enqueueLinkedQueue()\n");
+            printf("¿À·ù, ¸Þ¸ð¸® ÇÒ´ç, enqueueLinkedQueue()\n");
         }
     }
     return ret;

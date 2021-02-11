@@ -10,7 +10,7 @@ LinkedStack* createLinkedStack() {
     if (pReturn != NULL) {
         memset(pReturn, 0, sizeof(LinkedStack));
     } else {
-        printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½. createLinkedStack()\n");
+        printf("¿À·ù, ¸Þ¸ð¸® ÇÒ´ç. createLinkedStack()\n");
         return NULL;
     }
     return pReturn;
@@ -31,7 +31,7 @@ int pushLinkedStack(LinkedStack* pStack, StackNode element) {
             pStack->currentElementCount++;
             ret = TRUE;
         } else {
-            printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ï¿½Ò´ï¿½. pushLinkedStack()\n");
+            printf("¿À·ù, ¸Þ¸ð¸®ÇÒ´ç. pushLinkedStack()\n");
         }
     }
     return ret;
@@ -43,7 +43,7 @@ StackNode* popLinkedStack(LinkedStack* pStack) {
         if (isLinkedStackEmpty(pStack) == FALSE) {
             pReturn = pStack->pTopElement;
             pStack->pTopElement = pReturn->pLink;
-            pReturn->pLink = NULL; // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NULL ï¿½Ô·ï¿½(ï¿½ï¿½. ï¿½ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½Ð¸ï¿½)
+            pReturn->pLink = NULL; // ¹ÝÈ¯ ³ëµåÀÇ ´ÙÀ½ ³ëµå·Î NULL ÀÔ·Â(ÁÖ. ½ºÅÃ°ú º¯È¯°ª ºÐ¸®)
             pStack->currentElementCount--;
         }
     }

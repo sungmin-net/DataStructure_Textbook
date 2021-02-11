@@ -67,7 +67,7 @@ void calcExpr(ExprToken* pExprTokens, int tokenCount) {
         printf("수식 계산 결과[%f]\n", pNode1->data.value);
         free(pNode1);
     } else {
-        printf("오류, 수식이 오류가 있습니다.\n");
+        printf("오류, 수식에 오류가 있습니다.\n");
     }
     deleteLinkedStack(pStack);
 }

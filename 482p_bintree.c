@@ -13,12 +13,12 @@ BinTree* makeBinTree(BinTreeNode rootNode) {
             pReturn->pRootNode->pLeftChild = NULL;
             pReturn->pRootNode->pRightChild = NULL;
         } else {
-            printf("ï¿½Þ¸ï¿½ï¿½Ò´ï¿½2, makeBinTree()\n");
+            printf("¸Þ¸ð¸®ÇÒ´ç2, makeBinTree()\n");
             free(pReturn);
             pReturn = NULL;
         }
     } else {
-        printf("ï¿½Þ¸ï¿½ï¿½Ò´ï¿½1, makeBinTree()\n");
+        printf("¸Þ¸ð¸®ÇÒ´ç1, makeBinTree()\n");
     }
     return pReturn;
 }
@@ -35,10 +35,10 @@ BinTreeNode* insertLeftChildNodeBinTree(BinTreeNode* pParentNode,
                 pParentNode->pLeftChild->pRightChild = NULL;
                 pReturn = pParentNode->pLeftChild;
             } else {
-                printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ï¿½Ò´ï¿½, insertLeftChildNodeBinTree()\n");
+                printf("¿À·ù, ¸Þ¸ð¸®ÇÒ´ç, insertLeftChildNodeBinTree()\n");
             }
         } else {
-            printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Ì¹ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. insertLeftChildNodeBinTree()\n");
+            printf("¿À·ù, ÀÌ¹Ì ³ëµå°¡ Á¸ÀçÇÕ´Ï´Ù. insertLeftChildNodeBinTree()\n");
         }
     }
     return pReturn;
@@ -56,10 +56,10 @@ BinTreeNode* insertRightChildNodeBinTree(BinTreeNode* pParentNode,
                 pParentNode->pRightChild->pRightChild = NULL;
                 pReturn = pParentNode->pRightChild;
             } else {
-                printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ï¿½Ò´ï¿½, insertRightChildNodeBinTree()\n");
+                printf("¿À·ù, ¸Þ¸ð¸®ÇÒ´ç, insertRightChildNodeBinTree()\n");
             }
         } else {
-            printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Ì¹ï¿½ ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. insertRightChildNodeBinTree()\n");
+            printf("¿À·ù, ÀÌ¹Ì ³ëµå°¡ Á¸ÀçÇÕ´Ï´Ù. insertRightChildNodeBinTree()\n");
         }
     }
     return pReturn;
