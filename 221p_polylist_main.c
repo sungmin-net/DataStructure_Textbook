@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
     pListA = createLinkedList();
     pListB = createLinkedList();
     if (pListA != NULL && pListB != NULL) {
-        // ´ÙÇ×½Ä ÃÊ±âÈ­
+        // ë‹¤í•­ì‹ ì´ˆê¸°í™”
         // pListA : 6x^6 + 4x^5        + 2x^2
         // pListB :        1x^5 + 2X^4 + 3x^2 + 4x^0
         addPolyNodeLast(pListA, 6, 6);

@@ -13,24 +13,24 @@ int main(int argc, char* argv[]) {
     BinTree* pCopyBinTree = NULL;
 
     pBinTree = createExampleBinTree();
-    printf("ÀÌÁø Æ®¸® ¿øº» : \n");
+    printf("ì´ì§„ íŠ¸ë¦¬ ì›ë³¸");
     displayBinTree(pBinTree);
 
     pCopyBinTree = copyBinTree(pBinTree);
-    printf("ÀÌÁø Æ®¸® º¹»çº» :\n");
+    printf("ì´ì§„ íŠ¸ë¦¬ ë³µì‚¬ë³¸ :\n");
     displayBinTree(pCopyBinTree);
 
     compareResult = isEqualBinTree(pBinTree, pCopyBinTree);
-    printf("\nÀÌÁø Æ®¸® ºñ±³ °á°ú : (%s)\n", compareResult ? "TRUE" : "FALSE");
+    printf("\nì´ì§„ íŠ¸ë¦¬ ë¹„êµ ê²°ê³¼ : (%s)\n", compareResult ? "TRUE" : "FALSE");
 
     count = getNodeCountBinTree(pBinTree);
-    printf("\nÀÌÁø Æ®¸® ³ëµå °³¼ö : %d\n", count);
+    printf("\nì´ì§„ íŠ¸ë¦¬ ë…¸ë“œ ê°œìˆ˜ : %d\n", count);
 
     count = getLeafNodeCountBinTree(pBinTree);
-    printf("\nÀÌÁø Æ®¸® ´Ü¸» ³ëµå °³¼ö : %d\n", count);
+    printf("\nì´ì§„ íŠ¸ë¦¬ ë‹¨ë§ ë…¸ë“œ ê°œìˆ˜ : %d\n", count);
 
     count = getHeightBinTree(pBinTree);
-    printf("\nÀÌÁø Æ®¸®ÀÇ ³ôÀÌ : %d\n", count);
+    printf("\nì´ì§„ íŠ¸ë¦¬ì˜ ë†’ì´ : %d\n", count);
 
     deleteBinTree(pBinTree);
     deleteBinTree(pCopyBinTree);

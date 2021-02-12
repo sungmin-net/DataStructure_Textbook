@@ -21,7 +21,7 @@ int isLinkedStackEmpty(LinkedStack* pStack);
 
 #endif
 
-#ifndef _COMMON_STACK_DEF
+#ifndef _COMMON_STACK_DEF_
 #define _COMMON_STACK_DEF_
 
 #define TRUE        1

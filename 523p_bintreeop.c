@@ -10,7 +10,7 @@ BinTree* copyBinTree(BinTree* pSource) {
         if (pReturn != NULL) {
             pReturn->pRootNode = copyBinTreeNode(pSource->pRootNode);
         } else {
-            printf("¿À·ù, ¸Þ¸ð¸® ÇÒ´ç, copyBinTree()\n");
+            printf("ì˜¤ë¥˜, ë©”ëª¨ë¦¬ í• ë‹¹, copyBinTree()\n");
         }
     }
     return pReturn;
@@ -27,7 +27,7 @@ BinTreeNode* copyBinTreeNode(BinTreeNode* pSourceNode) {
             pReturn->pRightChild = copyBinTreeNode(
                     getRightChildNodeBinTree(pSourceNode));
         } else {
-            printf("¿À·ù, ¸Þ¸ð¸®ÇÒ´ç, copyBinTreeNode()\n");
+            printf("ì˜¤ë¥˜, ë©”ëª¨ë¦¬í• ë‹¹, copyBinTreeNode()\n");
         }
     }
     return pReturn;
@@ -125,7 +125,7 @@ void displayBinTree(BinTree* pTree) {
     if (pTree != NULL) {
         displayBinTreeNode(pTree->pRootNode, 0, 'O');
     } else {
-        printf("Æ®¸®°¡ NULL ÀÔ´Ï´Ù.\n");
+        printf("íŠ¸ë¦¬ê°€ NULL ìž…ë‹ˆë‹¤.\n");
     }
 }
 

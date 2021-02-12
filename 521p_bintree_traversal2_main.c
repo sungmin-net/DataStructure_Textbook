@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "509p_bintree.h"
 #include "512p_bintreetraversal.h"
 

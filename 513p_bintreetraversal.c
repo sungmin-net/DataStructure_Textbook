@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "509p_bintree.h"
-#include "511p_bintreelinkedqueue.h"
 #include "511p_bintreelinkedstack.h"
+#include "511p_bintreelinkedqueue.h"
 #include "512p_bintreetraversal.h"
 
 int pushLinkedStackBinTreeNode(LinkedStack* pStack, BinTreeNode* pNode) {

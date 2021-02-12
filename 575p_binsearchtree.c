@@ -9,7 +9,7 @@ BinSearchTree* createBinSearchTree() {
     if (pReturn != NULL) {
         pReturn->pRootNode = NULL;
     } else {
-        printf("����, �޸��Ҵ�, createBinSearchTree()\n");
+        printf("오류, 메모리할당, createBinSearchTree()\n");
     }
     return pReturn;
 }
@@ -26,31 +26,31 @@ int insertElementBinSearchTree(BinSearchTree* pBinSearchTree,
     pParentNode = pBinSearchTree->pRootNode;
     while (pParentNode != NULL) {
         if (element.key == pParentNode->key) {
-            // case1. �ߺ��� Ű�� �߰ߵ� ���
-            printf("����, �ߺ��� Ű - [%d], insertElementBinSearchTree()\n",
+            //  case1. 중복된 키가 발견된 경우
+            printf("오류, 중복된 키 - [%d], insertElementBinSearchTree()",
                     element.key);
             ret = FALSE;
             return ret;
         } else if (element.key < pParentNode->key) {
-            // case2. ���� ��� Ű ������ ���� ���.
-            // ���� ���� Ʈ���� �̵�
+            // case2. 현재 노드 키 값보다 작은 경우.
+            // 왼쪽 서브 트리로 이동
             if (pParentNode->pLeftChild == NULL) {
-                // ���� �ڽ� ��尡 NULL �̸�, ���ο� ��带 ������ ��ġ�� �߰�
+                // 왼쪽 자식 노드가 NULL 이면, 새로운 노드를 삽입할 위치를 발견
                 break;
             } else {
-                // ���� �ڽ� ��尡 NULL �� �ƴϸ�, ��� ���� �ڽ� ���� �̵�
+                // 왼쪽 자식 노드가 NULL 이 아니면, 계속 왼쪽 자식 노드로 이동
                 pParentNode = pParentNode->pLeftChild;
             }
         } else {
-            // case3. ���� ����� Ű ������ ū ���.
-            // ������ ���� Ʈ���� �̵�
+            // case3. 현재 노드의 키 값보다 큰 경우.
+            // 오른쪽 서브 트리로 이동
             if (pParentNode->pRightChild == NULL) {
-                // ������ �ڽ� ��尡 NULL �̸�, ���ο� ��带 ������ ��ġ��
-                // �߰�
+                // 오른쪽 자식 노드가 NULL 이면, 새로운 노드를 삽입할 위치를
+                // 발견
                 break;
             } else {
-                // ������ �ڽ� ��尡 NULL �� �ƴϸ�, ��� ������ �ڽ� ����
-                // �̵�
+                // 오른쪽 자식 노드가 NULL 이 아니면, 계속 오른쪽 자식 노드로
+                // 이동
                 pParentNode = pParentNode->pRightChild;
             }
         }
@@ -61,23 +61,23 @@ int insertElementBinSearchTree(BinSearchTree* pBinSearchTree,
         pNewNode->pLeftChild = NULL;
         pNewNode->pRightChild = NULL;
         if (pParentNode == NULL) {
-            // ���� �߰��Ǵ� ����� �θ� ��尡 NULL �� ���, �� ��Ʈ ��尡
-            // NULL �� ����̸�, ���� �߰��Ǵ� ��带 ���� Ž�� Ʈ���� ��Ʈ
-            // ��尡 �ȴ�.
+            // 새로 추가되는 노드의 부모 노드가 NULL 인 경우, 즉 루트 노드가
+            // NULL 인 경우이며, 새로 추가되는 노드를 이진 탐색 트리의 루트
+            // 노드가 된다.
             pBinSearchTree->pRootNode = pNewNode;
         } else {
-            // ���ο� ����� Ű ���� �θ� ��� pParentNode �� Ű ���� ��
+            // 새로운 노드의 키 값과 부모 노드 pParentNode 의 키 값을 비교
             if (pNewNode->key < pParentNode->key) {
-                // �θ����� Ű ������ �۴ٸ� ���� �ڽ� ���� �߰�
+                // 부모노드의 키 값보다 작다면 왼쪽 자식 노드로 추가
                 pParentNode->pLeftChild = pNewNode;
             } else {
-                // �׷��� ������, ������ �ڽ� ���� �߰�
+                // 그렇지 않으면, 오른쪽 자식 노드로 추가
                 pParentNode->pRightChild = pNewNode;
             }
         }
         ret = TRUE;
     } else {
-        printf("����, �޸� �Ҵ�, insertElementBinSearchTree()\n");
+        printf("오류, 메모리 할당, insertElementBinSearchTree()\n");
         ret = FALSE;
     }
     return ret;
@@ -97,7 +97,7 @@ int deleteElementBinSearchTree(BinSearchTree* pBinSearchTree, int key) {
     }
     pParentNode = NULL;
     pDelNode = pBinSearchTree->pRootNode;
-    // ���� ��� ���� ���� ��� ����� �θ� ��� ã��
+    // 삭제 대상 노드와 삭제 대상 노드의 부모 노드 찾기
     while (pDelNode != NULL) {
         if (key == pDelNode->key) {
             break;
@@ -109,14 +109,14 @@ int deleteElementBinSearchTree(BinSearchTree* pBinSearchTree, int key) {
             pDelNode = pDelNode->pRightChild;
         }
         if (pDelNode == NULL) {
-            printf("����, �������� �ʴ� Ű - [%d], deleteElementBinSearchTree()\n",
+            printf("오류, 존재하지 않는 키 - [%d], deleteElementBinSearchTree()\n",
                     key);
             ret = FALSE;
             return ret;
         }
     }
     if (pDelNode->pLeftChild == NULL && pDelNode->pRightChild == NULL) {
-        // ���� ��� ����� �ڽ� ��尡 0���� ���
+    	// 삭제 대상 노드의 자식 노드가 0개인 경우
         if (pParentNode != NULL) {
             if (pParentNode->pLeftChild == pDelNode) {
                 pParentNode->pLeftChild = NULL;
@@ -127,24 +127,24 @@ int deleteElementBinSearchTree(BinSearchTree* pBinSearchTree, int key) {
             pBinSearchTree->pRootNode = NULL;
         }
     } else if (pDelNode->pLeftChild != NULL && pDelNode->pRightChild != NULL) {
-        // ���� ��� ����� �ڽ� ��尡 2���� ���
+    	// 삭제 대상 노드의 자식 노드가 2개인 경우
         pPredecessor = pDelNode;
         pSuccessor = pDelNode->pLeftChild;
-        // ���� ����Ʈ������ ���� ū Ű ���� ������ ��� ã��
+        // 왼쪽 서브트리에서 가장 큰 키 값을 가지는 노드 찾기
         while (pSuccessor->pRightChild != NULL) {
-             // ���� ����Ʈ���� ���� �� �ڽ� ��带 ���� ��� �̵�
+        	// 왼쪽 서브트리의 오른 쪽 자식 노드를 따라 계속 이동
             pPredecessor = pSuccessor;
             pSuccessor = pSuccessor->pRightChild;
         }
-        // pSuccessor �� ������ ��带 ��ü�� ��ü ��带 ����Ų��.
-        // ������ ��� pDelNode �� �ڽ� ��带 ��ü ��� pSuccessor ��
-        // �ڽ� ���� ����
+        // pSuccessor 는 삭제할 노드를 대체할 대체 노드를 가리킨다.
+        // 삭제할 노드 pDelNode 의 자식 노드를 대체 노드 pSuccessor 의
+        // 자식 노드로 변경
         pPredecessor->pRightChild = pSuccessor->pLeftChild;
         pSuccessor->pLeftChild = pDelNode->pLeftChild;
         pSuccessor->pRightChild = pDelNode->pRightChild;
         if (pParentNode != NULL) {
-            // ��ü ��� pSuccessor �� ���� ���� ����� �θ� ��� pParentNode ��
-            // ���ο� �ڽ� ���� ����
+            // 대체 노드 pSuccessor 를 기존 삭제 노드의 부모 노드 pParentNode 의
+            // 새로운 자식 노드로 설정
             if (pParentNode->pLeftChild == pDelNode) {
                 pParentNode->pLeftChild = pSuccessor;
             } else {
@@ -152,11 +152,11 @@ int deleteElementBinSearchTree(BinSearchTree* pBinSearchTree, int key) {
             }
         } else {
             pBinSearchTree->pRootNode = pSuccessor;
-            // �θ��尡 NULL �̸� ��Ʈ ��尡 �����Ǿ��ٴ� �ǹ��̹Ƿ�
-            // ���� Ž�� Ʈ���� ���ο� ��Ʈ ���� ����
+            // 부모노드가 NULL 이면 루트 노드가 삭제되었다는 의미이므로
+            // 이진 탐색 트리의 새로운 루트 노드로 설정
         }
     } else {
-        // ���� ��� ����� �ڽ� ��尡 1���� ��츦 ó��
+        // 삭제 대상 노드의 자식 노드가 1개인 경우를 처리
         if (pDelNode->pLeftChild != NULL) {
             pChildNode = pDelNode->pLeftChild;
         } else {

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "480p_bintree.h"
+#include "509p_bintree.h"
 
 BinTree* makeBinTree(BinTreeNode rootNode) {
     BinTree* pReturn = NULL;
@@ -13,14 +12,22 @@ BinTree* makeBinTree(BinTreeNode rootNode) {
             pReturn->pRootNode->pLeftChild = NULL;
             pReturn->pRootNode->pRightChild = NULL;
         } else {
-            printf("¸Ş¸ğ¸®ÇÒ´ç2, makeBinTree()\n");
+            printf("ë©”ëª¨ë¦¬í• ë‹¹2, makeBinTree()\n");
             free(pReturn);
             pReturn = NULL;
         }
     } else {
-        printf("¸Ş¸ğ¸®ÇÒ´ç1, makeBinTree()\n");
+        printf("ë©”ëª¨ë¦¬í• ë‹¹1, makeBinTree()\n");
     }
     return pReturn;
+}
+
+BinTreeNode* getLeftChildNodeBinTree(BinTreeNode* pParentNode) {
+    return pParentNode->pLeftChild;
+}
+
+BinTreeNode* getRightChildNodeBinTree(BinTreeNode* pParentNode) {
+    return pParentNode->pRightChild;
 }
 
 BinTreeNode* insertLeftChildNodeBinTree(BinTreeNode* pParentNode,
@@ -35,10 +42,10 @@ BinTreeNode* insertLeftChildNodeBinTree(BinTreeNode* pParentNode,
                 pParentNode->pLeftChild->pRightChild = NULL;
                 pReturn = pParentNode->pLeftChild;
             } else {
-                printf("¿À·ù, ¸Ş¸ğ¸®ÇÒ´ç, insertLeftChildNodeBinTree()\n");
+                printf("ì˜¤ë¥˜, ë©”ëª¨ë¦¬í• ë‹¹, insertLeftChildNodeBinTree()\n");
             }
         } else {
-            printf("¿À·ù, ÀÌ¹Ì ³ëµå°¡ Á¸ÀçÇÕ´Ï´Ù. insertLeftChildNodeBinTree()\n");
+            printf("ì˜¤ë¥˜, ì´ë¯¸ ë…¸ë“œê°€ ì¡´ì¬í•©ë‹ˆë‹¤. insertLeftChildNodeBinTree()\n");
         }
     }
     return pReturn;
@@ -56,10 +63,10 @@ BinTreeNode* insertRightChildNodeBinTree(BinTreeNode* pParentNode,
                 pParentNode->pRightChild->pRightChild = NULL;
                 pReturn = pParentNode->pRightChild;
             } else {
-                printf("¿À·ù, ¸Ş¸ğ¸®ÇÒ´ç, insertRightChildNodeBinTree()\n");
+                printf("ì˜¤ë¥˜, ë©”ëª¨ë¦¬í• ë‹¹, insertRightChildNodeBinTree()\n");
             }
         } else {
-            printf("¿À·ù, ÀÌ¹Ì ³ëµå°¡ Á¸ÀçÇÕ´Ï´Ù. insertRightChildNodeBinTree()\n");
+            printf("ì˜¤ë¥˜, ì´ë¯¸ ë…¸ë“œê°€ ì¡´ì¬í•©ë‹ˆë‹¤. insertRightChildNodeBinTree()\n");
         }
     }
     return pReturn;
