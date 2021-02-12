@@ -11,7 +11,7 @@ LinkedQueue* createLinkedQueue() {
     if (pReturn != NULL) {
         memset(pReturn, 0, sizeof (LinkedQueue));
     } else {
-        printf("����, �޸� �Ҵ�, createLinkedQueue()\n");
+        printf("오류, 메모리 할당, createLinkedQueue()\n");
     }
 
     return pReturn;
@@ -24,22 +24,22 @@ int enqueueLinkedQueue(LinkedQueue* pQueue, QueueNode element) {
     if (pQueue != NULL) {
         pNode = (QueueNode*)malloc(sizeof (QueueNode));
         if (pNode != NULL) {
-            *pNode = element;       // ���ο� �ڷᰪ ����
-            pNode->pLink = NULL;    // ���� ��带 NULL �� ����
+            *pNode = element;       // 새로운 자료값 대입
+            pNode->pLink = NULL;    // 다음 노드를 NULL 로 지정
 
             if (isLinkedQueueEmpty(pQueue) == TRUE) {
-                // ���� ť�� ���
+                // 공백 큐의 경우
                 pQueue->pFrontNode = pNode;
                 pQueue->pRearNode = pNode;
             } else {
-                // ������ �ƴ� ť�� ���
+                // 공백이 아닌 큐의 경우
                 pQueue->pRearNode->pLink = pNode;
                 pQueue->pRearNode = pNode;
             }
             pQueue->currentElementCount++;
             ret = TRUE;
         } else {
-            printf("����, �޸� �Ҵ�, enqueueLinkedQueue()\n");
+            printf("오류, 메모리 할당, enqueueLinkedQueue()\n");
         }
     }
     return ret;
