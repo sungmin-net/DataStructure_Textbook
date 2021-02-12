@@ -7,8 +7,8 @@ typedef struct StackNodeType {
 } StackNode;
 
 typedef struct LinkedStackType {
-    int currentElementCount ;   // ÇöÀç ¿ø¼ÒÀÇ °³¼ö
-    StackNode* pTopElement;     // Top ³ëµåÀÇ Æ÷ÀÎÅÍ
+    int currentElementCount ;   // í˜„ì¬ ì›ì†Œì˜ ê°œìˆ˜
+    StackNode* pTopElement;     // Top ë…¸ë“œì˜ í¬ì¸í„°
 } LinkedStack;
 
 LinkedStack* createLinkedStack();
@@ -21,7 +21,7 @@ int isLinkedStackEmpty(LinkedStack* pStack);
 
 #endif
 
-#ifndef _COMMON_STACK_DEF
+#ifndef _COMMON_STACK_DEF_
 #define _COMMON_STACK_DEF_
 
 #define TRUE    1

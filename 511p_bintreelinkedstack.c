@@ -10,7 +10,7 @@ LinkedStack* createLinkedStack() {
     if (pReturn != NULL) {
         memset(pReturn, 0, sizeof(LinkedStack));
     } else {
-        printf("����, �޸� �Ҵ�. createLinkedStack()\n");
+        printf("오류, 메모리 할당. createLinkedStack()\n");
         return NULL;
     }
     return pReturn;
@@ -31,7 +31,7 @@ int pushLinkedStack(LinkedStack* pStack, StackNode element) {
             pStack->currentElementCount++;
             ret = TRUE;
         } else {
-            printf("����, �޸��Ҵ�. pushLinkedStack()\n");
+            printf("오류, 메모리할당. pushLinkedStack()\n");
         }
     }
     return ret;
@@ -43,7 +43,7 @@ StackNode* popLinkedStack(LinkedStack* pStack) {
         if (isLinkedStackEmpty(pStack) == FALSE) {
             pReturn = pStack->pTopElement;
             pStack->pTopElement = pReturn->pLink;
-            pReturn->pLink = NULL; // ��ȯ ����� ���� ���� NULL �Է�(��. ���ð� ��ȯ�� �и�)
+            pReturn->pLink = NULL; // 반환 노드의 다음 노드로 NULL 입력(주. 스택과 변환값 분리)
             pStack->currentElementCount--;
         }
     }

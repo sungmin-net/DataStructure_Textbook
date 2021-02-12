@@ -20,7 +20,7 @@ void displayLinkedDeq(LinkedDeq* pDeq) {
     int i = 0;
 
     if (pDeq != NULL) {
-        printf("ÇöÀç ³ëµå °³¼ö : %d\n", pDeq->currentElementCount);
+        printf("í˜„ì¬ ë…¸ë“œ ê°œìˆ˜ : %d\n", pDeq->currentElementCount);
         pNode = pDeq->pFrontNode;
         while (pNode != NULL) {
             printf("[%d]-[%c]\n", i, pNode->data);
