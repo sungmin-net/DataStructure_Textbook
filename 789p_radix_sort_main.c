@@ -12,14 +12,14 @@ void radixSort(int value[], int count, int radix, int digit) {
     int factor = 1;
     LinkedQueue** ppQueue = NULL;
     QueueNode node = {0,};
-    // ê¸°ìˆ˜(radix) ê°œìˆ˜ ë§Œí¼ ì—°ê²° íë¥¼ ìƒì„±í•˜ê¸° ìœ„í•´ ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ê³ , ê²€ì¦
+    //±â¼ö(radix) °³¼ö ¸¸Å­ ¿¬°á Å¥¸¦ »ý¼ºÇÏ±â À§ÇØ ¸Þ¸ð¸®¸¦ ÇÒ´çÇÏ°í, °ËÁõ
     ppQueue = (LinkedQueue**)malloc(sizeof(LinkedQueue*) * radix);
     if (ppQueue == NULL) {
         printf("ï¿½ï¿½ï¿½ï¿½, ï¿½Þ¸ï¿½ ï¿½Ò´ï¿½, radixSort()\n");
         return;
     }
-    // ê° ê¸°ìˆ˜ì— í•´ë‹¹í•˜ëŠ” ë²„í‚·(ì—°ê²° í)ë¥¼ ìƒì„±. ë‹¨, ë²„í‚·ì„ ìƒì„±í•˜ëŠ” ë„ì¤‘ì—
-    // ì˜¤ë¥˜ê°€ ë°œìƒí–ˆì„ ê²½ìš°, ì´ë¯¸ í• ë‹¹ëœ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
+    // °¢ ±â¼ö¿¡ ÇØ´çÇÏ´Â ¹öÅ¶(¿¬°á Å¥)¸¦ »ý¼º. ´Ü, ¹öÅ¶À» »ý¼ºÇÏ´Â µµÁß¿¡
+    // ¿À·ù°¡ ¹ß»ýÇßÀ» °æ¿ì, ÀÌ¹Ì ÇÒ´çµÈ ¸Þ¸ð¸®¸¦ ÇØÁ¦ÇÑ´Ù.
     for (bucket = 0 ; bucket < radix ; bucket++) {
         ppQueue[ bucket ] = createLinkedQueue();
         if (ppQueue[ bucket ] == NULL) {
@@ -34,14 +34,14 @@ void radixSort(int value[], int count, int radix, int digit) {
         }
     }
 
-    // ê° ìžë¦¿ìˆ˜ë³„ë¡œ ë£¨í”„ë¥¼ ëŒë©´ì„œ ë¶„ë°° ë° ì €ìž¥ ì—°ì‚°ì„ ì‹¤í–‰
+    // °¢ ÀÚ¸´¼öº°·Î ·çÇÁ¸¦ µ¹¸é¼­ ºÐ¹è ¹× ÀúÀå ¿¬»êÀ» ½ÇÇà
     for (d = 0 ; d < digit ; d++) {
         for (i = 0 ; i < count ; i++) {
             node.data = value[ i ];
             enqueueLinkedQueue(ppQueue[ (value[ i ] / factor) % radix ], node);
         }
         i = 0;
-        // ìžë£Œì˜ ë¶„ë°°ê°€ ì™„ë£Œë˜ë©´ ê° ë²„í‚·ë³„ë¡œ ë£¨í”„ë¥¼ ëŒë©´ì„œ ìžë£Œë¥¼ êº¼ë‚´ ì €ìž¥
+        // ÀÚ·áÀÇ ºÐ¹è°¡ ¿Ï·áµÇ¸é °¢ ¹öÅ¶º°·Î ·çÇÁ¸¦ µ¹¸é¼­ ÀÚ·á¸¦ ²¨³» ÀúÀå
         for (bucket = 0 ; bucket < radix ; bucket++) {
             while (isLinkedQueueEmpty(ppQueue[ bucket ]) == FALSE) {
                 QueueNode* pNode = dequeueLinkedQueue(ppQueue[ bucket ]);
@@ -58,8 +58,8 @@ void radixSort(int value[], int count, int radix, int digit) {
         factor = factor * radix;
     }
 
-    // í• ë‹¹ëœ ë²„í‚·(ì—°ê²° í)ì˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œ. ë‹¨, íë“¤ì˜ ë°°ì—´ì´ê¸° ë•Œë¬¸ì— ë£¨í”„ë¥¼
-    // ëŒë©° ê°ê°ì˜ ë²„í‚·ì„ ë©”ëª¨ë¦¬ í•´ì œì‹œí‚¤ê³ , ì „ì²´ ë©”ëª¨ë¦¬ë¥¼ í•´ì œ
+    // ÇÒ´çµÈ ¹öÅ¶(¿¬°á Å¥)ÀÇ ¸Þ¸ð¸®¸¦ ÇØÁ¦. ´Ü, Å¥µéÀÇ ¹è¿­ÀÌ±â ¶§¹®¿¡ ·çÇÁ¸¦
+    // µ¹¸ç °¢°¢ÀÇ ¹öÅ¶À» ¸Þ¸ð¸® ÇØÁ¦½ÃÅ°°í, ÀüÃ¼ ¸Þ¸ð¸®¸¦ ÇØÁ¦
     for (bucket = 0 ; bucket < radix ; bucket++) {
         deleteLinkedQueue(ppQueue[ bucket ]);
     }

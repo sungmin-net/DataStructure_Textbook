@@ -4,7 +4,7 @@
 
 #include "820p_seqsearch.h"
 
-// ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+// Á¤·ÄµÇÁö ¾ÊÀº ¹è¿­ÀÇ ¼øÂ÷ °Ë»ö
 int sequentialSearchNotSorted(int value[], int size, int key) {
     int ret = FAIL;
     int i = 0;
@@ -19,7 +19,7 @@ int sequentialSearchNotSorted(int value[], int size, int key) {
     return ret;
 }
 
-// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+// ¿À¸§ Â÷¼ø Á¤·Ä ¹è¿­ÀÇ ¼øÂ÷ °Ë»ö
 int sequentialSearchAscendingSorted(int value[], int size, int key) {
     int ret = FAIL;
 
@@ -33,7 +33,7 @@ int sequentialSearchAscendingSorted(int value[], int size, int key) {
     return ret;
 }
 
-// ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+// ¹è¿­ÀÇ ³»¿ëÀ» Ãâ·Â
 void showArray(int value[], int size) {
     int i = 0;
     printf("position, key\n");

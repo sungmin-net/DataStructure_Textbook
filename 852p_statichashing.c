@@ -4,12 +4,12 @@
 
 #include "850p_statichashing.h"
 
-// í•´ì‹œ í…Œì´ë¸”ì˜ ìƒì„±.
+// ÇØ½Ã Å×ÀÌºíÀÇ »ı¼º.
 HashTable* createHashTable(int bucketSize) {
     HashTable* pReturn = NULL;
 
     if (bucketSize <= 0) {
-        printf("ë²„í‚· í¬ê¸°ëŠ” 0ë³´ë‹¤ ì»¤ì•¼ í•©ë‹ˆë‹¤.\n");
+        printf("¹öÅ¶ Å©±â´Â 0º¸´Ù Ä¿¾ß ÇÕ´Ï´Ù.\n");
         return NULL;
     }
 
@@ -19,7 +19,7 @@ HashTable* createHashTable(int bucketSize) {
         pReturn->bucketSize = bucketSize;
         pReturn->pElement = NULL;
     } else {
-        printf("ì˜¤ë¥˜, ì²«ë²ˆì§¸ ë©”ëª¨ë¦¬ í• ë‹¹, createHashTable()\n");
+        printf("¿À·ù, Ã¹¹øÂ° ¸Ş¸ğ¸® ÇÒ´ç, createHashTable()\n");
         return NULL;
     }
 
@@ -29,15 +29,14 @@ HashTable* createHashTable(int bucketSize) {
     } else {
         if (pReturn != NULL) {
             free(pReturn);
-        	printf("%d\n", 4);
         }
-        printf("ì˜¤ë¥˜, ë‘ë²ˆì§¸ ë©”ëª¨ë¦¬ í• ë‹¹, createHashTable()\n");
+        printf("¿À·ù, µÎ¹øÂ° ¸Ş¸ğ¸® ÇÒ´ç, createHashTable()\n");
         return NULL;
     }
     return pReturn;
 }
 
-// ìë£Œì˜ ì¶”ê°€
+// ÀÚ·áÀÇ Ãß°¡
 int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
     int ret = FALSE;
     HashElement* pElement = NULL;
@@ -46,14 +45,14 @@ int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
     int inc = 1;
 
     if (pHashTable == NULL) {
-        printf("ì˜¤ë¥˜, NULL-í•´ì‹œ í…Œì´ë¸”ì…ë‹ˆë‹¤.\n");
+        printf("¿À·ù, NULL-ÇØ½Ã Å×ÀÌºíÀÔ´Ï´Ù.\n");
         ret = FALSE;
         return ret;
     }
 
     bucketIndex = hashFunction(element.key, pHashTable->bucketSize);
     if (bucketIndex < 0 || bucketIndex >= pHashTable->bucketSize) {
-        printf("ì˜¤ë¥˜, ì˜ëª»ëœ í•´ì‹œ í…Œì´ë¸” ì£¼ì†Œê°€ ê³„ì‚°ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
+        printf("¿À·ù, Àß¸øµÈ ÇØ½¬ Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
         ret = FALSE;
         return ret;
     }
@@ -61,7 +60,7 @@ int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
     tempIndex = bucketIndex;
     do {
         pElement = &(pHashTable->pElement[ tempIndex ]);
-        // 1. ë¹ˆ ì£¼ì†Œ ë˜ëŠ” ì‚­ì œëœ ì£¼ì†Œì¸ì§€ ì ê²€
+        // 1. ºó ÁÖ¼Ò ¶Ç´Â »èÁ¦µÈ ÁÖ¼ÒÀÎÁö Á¡°Ë
         if (isEmptyOrDeletedBucket(pElement) == TRUE) {
             pHashTable->pElement[ tempIndex ] = element;
             pHashTable->pElement[ tempIndex ].status = USED;
@@ -69,18 +68,18 @@ int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
             ret = TRUE;
             break;
         } else {
-            // 2. ë¹ˆ ë²„í‚·ì„ ì°¾ì§€ ëª»í•œ ê²½ìš°.
-            // 2-1. ë™ì¼í•œ key ê°€ ì´ë¯¸ ì¡´ì¬í•˜ëŠ” ê²½ìš°.
+            // 2. ºó ¹öÅ¶À» Ã£Áö ¸øÇÑ °æ¿ì.
+            // 2-1. µ¿ÀÏÇÑ key °¡ ÀÌ¹Ì Á¸ÀçÇÏ´Â °æ¿ì.
             if (strcmp(pElement->key, element.key) == 0) {
-                printf("ï¿½ï¿½ï¿½ï¿½, ï¿½ßºï¿½ï¿½ï¿½ Å°-[%s]\n", element.key);
+                printf("¿À·ù, Áßº¹µÈ Å°-[%s]\n", element.key);
                 ret = FALSE;
                 break;
             } else {
-                // 2-2. ë™ì¼í•˜ì§€ ì•Šì€ keyì¸ ê²½ìš°, ë‹¤ìŒ ë²„í‚·ìœ¼ë¡œ ì´ë™.
+                // 2-2. µ¿ÀÏÇÏÁö ¾ÊÀº keyÀÎ °æ¿ì, ´ÙÀ½ ¹öÅ¶À¸·Î ÀÌµ¿.
                 tempIndex = (tempIndex + inc) % pHashTable->bucketSize;
-                // í•´ì‹œ í…Œì´ë¸”ì˜ ëª¨ë“  ë²„í‚·ì´ ëª¨ë‘ ì°¬ ê²½ìš°.
+                // ÇØ½Ã Å×ÀÌºíÀÇ ¸ğµç ¹öÅ¶ÀÌ ¸ğµÎ Âù °æ¿ì.
                 if (tempIndex == bucketIndex) {
-                    printf("ì˜¤ë¥˜, í•´ì‹œ í…Œì´ë¸”ì´ ê°€ë“ì°¼ìŠµë‹ˆë‹¤.\n");
+                    printf("¿À·ù, ÇØ½¬Å×ÀÌºíÀÌ °¡µæÃ¡½À´Ï´Ù.\n");
                     ret = FALSE;
                     break;
                 }
@@ -104,7 +103,7 @@ int hashFunction(char* pKey, int bucketSize) {
     return ret;
 }
 
-// ë¬¸ìì—´ì„ ìˆ«ìë¡œ ë³€í™˜.
+// ¹®ÀÚ¿­À» ¼ıÀÚ·Î º¯È¯.
 unsigned int stringToInt(char* pKey) {
     unsigned int ret = 0;
     while (*pKey != NULL) {
@@ -117,7 +116,7 @@ unsigned int stringToInt(char* pKey) {
     return ret;
 }
 
-// ë¹ˆ ì£¼ì†Œ í˜¹ì€ ì‚­ì œëœ ì£¼ì†Œì¸ì§€ ì ê²€.
+// ºó ÁÖ¼Ò È¤Àº »èÁ¦µÈ ÁÖ¼ÒÀÎÁö Á¡°Ë.
 int isEmptyOrDeletedBucket(HashElement* pElement) {
     int ret = FALSE;
     if (pElement != NULL) {
@@ -128,7 +127,7 @@ int isEmptyOrDeletedBucket(HashElement* pElement) {
     return ret;
 }
 
-// ìë£Œì˜ ê²€ìƒ‰
+// ÀÚ·áÀÇ °Ë»ö
 HashElement* searchHashTable(HashTable* pHashTable, char* pKey) {
     HashElement* pReturn = NULL;
     HashElement* pElement = NULL;
@@ -136,14 +135,14 @@ HashElement* searchHashTable(HashTable* pHashTable, char* pKey) {
     int tempIndex = 0;
 
     if (pHashTable == NULL) {
-        printf("ì˜¤ë¥˜, NULL í•´ì‹œ í…Œì´ë¸” ì…ë‹ˆë‹¤.\n");
+        printf("¿À·ù, NULL ÇØ½Ã Å×ÀÌºí ÀÔ´Ï´Ù.\n");
         pReturn = NULL;
         return pReturn;
     }
 
     bucketIndex = hashFunction(pKey, pHashTable->bucketSize);
     if (bucketIndex < 0) {
-        printf("ì˜¤ë¥˜, ì˜ëª»ëœ í•´ì‰¬ í…Œì´ë¸” ì£¼ì†Œê°€ ê³„ì‚°ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
+        printf("¿À·ù, Àß¸øµÈ ÇØ½¬ Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
         pReturn = NULL;
     }
 
@@ -151,22 +150,22 @@ HashElement* searchHashTable(HashTable* pHashTable, char* pKey) {
 
     do {
         pElement = &(pHashTable->pElement[ tempIndex ]);
-        // 1. ë¹ˆ ë²„í‚·ì„ ì°¾ì€ ê²½ìš°. ê²€ìƒ‰ ì‹¤íŒ¨.
+        // 1. ºó ¹öÅ¶À» Ã£Àº °æ¿ì. °Ë»ö ½ÇÆĞ.
         if (isEmptyBucket(pElement) == TRUE) {
-            printf("ê²€ìƒ‰ ì‹¤íŒ¨. ê²€ìƒ‰í‚¤-[%s]ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n", pKey);
+            printf("°Ë»ö ½ÇÆĞ. °Ë»öÅ°-[%s]´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n", pKey);
             pReturn = NULL;
             break;
         } else {
-            // 2-1. ë™ì¼í•œ í‚¤ë¥¼ ì°¾ì€ ê²½ìš°. ê²€ìƒ‰ ì„±ê³µ
+            // 2-1. µ¿ÀÏÇÑ Å°¸¦ Ã£Àº °æ¿ì. °Ë»ö ¼º°ø
             if (pElement->status == USED && strcmp(pElement->key, pKey) == 0) {
                 pReturn = pElement;
                 break;
             } else {
-                // 2-2. ë™ì¼í•˜ì§€ ì•Šì€ key ì¸ê²½ìš°, ë‹¤ìŒ ì£¼ì†Œë¡œ ì´ë™.
+                // 2-2. µ¿ÀÏÇÏÁö ¾ÊÀº key ÀÎ°æ¿ì, ´ÙÀ½ ÁÖ¼Ò·Î ÀÌµ¿.
                 tempIndex = (tempIndex + 1) % pHashTable->bucketSize;
-                // í•´ì‹œí…Œì´ë¸”ì˜ ëª¨ë“  ë²„í‚·ì„ ê²€ì‚¬í•œ ê²½ìš°.
+                // ÇØ½ÃÅ×ÀÌºíÀÇ ¸ğµç ¹öÅ¶À» °Ë»çÇÑ °æ¿ì.
                 if (tempIndex == bucketIndex) {
-                    printf("ê²€ìƒ‰ ì‹¤íŒ¨, ê²€ìƒ‰í‚¤-[%s]ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n",
+                    printf("°Ë»ö ½ÇÆĞ, °Ë»öÅ°-[%s]´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n",
                             pKey);
                     pReturn = NULL;
                     break;
@@ -178,7 +177,7 @@ HashElement* searchHashTable(HashTable* pHashTable, char* pKey) {
     return pReturn;
 }
 
-// ë¹ˆ ì£¼ì†Œì¸ì§€ ì ê²€.
+// ºó ÁÖ¼ÒÀÎÁö Á¡°Ë.
 int isEmptyBucket(HashElement* pElement) {
     int ret = FALSE;
     if (pElement != NULL) {
@@ -189,7 +188,7 @@ int isEmptyBucket(HashElement* pElement) {
     return ret;
 }
 
-// ìë£Œì˜ ì‚­ì œ.
+// ÀÚ·áÀÇ »èÁ¦.
 int deleteElementHashTable(HashTable* pHashTable, char* pKey) {
     int ret = FALSE;
     HashElement* pElement = NULL;
@@ -209,7 +208,7 @@ int deleteElementHashTable(HashTable* pHashTable, char* pKey) {
     return ret;
 }
 
-// í•´ì‹œ í…Œì´ë¸”ì˜ ì‚­ì œ
+// ÇØ½Ã Å×ÀÌºíÀÇ »èÁ¦
 void deleteHashTable(HashTable* pHashTable) {
     fflush(stdout);
     if (pHashTable != NULL) {
@@ -226,7 +225,7 @@ void deleteHashTable(HashTable* pHashTable) {
     printf("ff\n");
 }
 
-// í•´ì‹œ í…Œì´ë¸”ì˜ í˜„ì¬ ìë£Œì˜ ê°œìˆ˜
+// ÇØ½Ã Å×ÀÌºíÀÇ ÇöÀç ÀÚ·áÀÇ °³¼ö
 int getElementCountHashTable(HashTable* pHashTable) {
     int ret = 0;
     if (pHashTable != NULL) {
@@ -235,7 +234,7 @@ int getElementCountHashTable(HashTable* pHashTable) {
     return ret;
 }
 
-// í•´ì‹œ í…Œì´ë¸”ì˜ ë‚´ìš© ì¶œë ¥
+// ÇØ½Ã Å×ÀÌºíÀÇ ³»¿ë Ãâ·Â
 void displayHashTable(HashTable* pHashTable) {
     int i = 0;
     int bucketIndex = 0;
@@ -251,19 +250,10 @@ void displayHashTable(HashTable* pHashTable) {
                 printf("%s, (%d->%d), [%d]\n", pElement->key, bucketIndex, i,
                         pElement->value);
             } else {
-                printf("ë¹„ì—ˆìŠµë‹ˆë‹¤.\n");
+                printf("ºñ¾ú½À´Ï´Ù.\n");
             }
         }
     } else {
-        printf("NULL í•´ì‹œ í…Œì´ë¸”ì…ë‹ˆë‹¤.\n");
+        printf("NULL ÇØ½Ã Å×ÀÌºíÀÔ´Ï´Ù.\n");
     }
 }
-
-
-
-
-
-
-
-
-

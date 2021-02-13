@@ -444,12 +444,3 @@ void displayAvlTreeInternal(AvlTreeNode* pTreeNode, int level, char type) {
         printf("\n");
     }
 }
-
-
-
-
-
-
-
-
-
