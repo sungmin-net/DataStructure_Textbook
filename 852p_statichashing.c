@@ -52,7 +52,7 @@ int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
 
     bucketIndex = hashFunction(element.key, pHashTable->bucketSize);
     if (bucketIndex < 0 || bucketIndex >= pHashTable->bucketSize) {
-        printf("¿À·ù, Àß¸øµÈ ÇØ½¬ Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
+        printf("¿À·ù, Àß¸øµÈ ÇØ½Ã Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
         ret = FALSE;
         return ret;
     }
@@ -79,7 +79,7 @@ int addElementStaticHashTable(HashTable* pHashTable, HashElement element) {
                 tempIndex = (tempIndex + inc) % pHashTable->bucketSize;
                 // ÇØ½Ã Å×ÀÌºíÀÇ ¸ðµç ¹öÅ¶ÀÌ ¸ðµÎ Âù °æ¿ì.
                 if (tempIndex == bucketIndex) {
-                    printf("¿À·ù, ÇØ½¬Å×ÀÌºíÀÌ °¡µæÃ¡½À´Ï´Ù.\n");
+                    printf("¿À·ù, ÇØ½Ã Å×ÀÌºíÀÌ °¡µæÃ¡½À´Ï´Ù.\n");
                     ret = FALSE;
                     break;
                 }
@@ -142,7 +142,7 @@ HashElement* searchHashTable(HashTable* pHashTable, char* pKey) {
 
     bucketIndex = hashFunction(pKey, pHashTable->bucketSize);
     if (bucketIndex < 0) {
-        printf("¿À·ù, Àß¸øµÈ ÇØ½¬ Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
+        printf("¿À·ù, Àß¸øµÈ ÇØ½Ã Å×ÀÌºí ÁÖ¼Ò°¡ °è»êµÇ¾ú½À´Ï´Ù.\n");
         pReturn = NULL;
     }
 
@@ -202,7 +202,7 @@ int deleteElementHashTable(HashTable* pHashTable, char* pKey) {
             pHashTable->currentElementCount--;
             ret = TRUE;
         } else {
-            printf("ì‚­ì œ ì‹¤íŒ¨, ê²€ìƒ‰í‚¤-[%s]ëŠ” ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n", pKey);
+            printf("»èÁ¦ ½ÇÆÐ, °Ë»öÅ°-[%s]´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n", pKey);
         }
     }
     return ret;

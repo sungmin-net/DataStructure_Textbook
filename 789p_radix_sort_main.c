@@ -12,10 +12,10 @@ void radixSort(int value[], int count, int radix, int digit) {
     int factor = 1;
     LinkedQueue** ppQueue = NULL;
     QueueNode node = {0,};
-    //기수(radix) 개수 만큼 연결 큐를 생성하기 위해 메모리를 할당하고, 검증
+    // 기수(radix) 개수 만큼 연결 큐를 생성하기 위해 메모리를 할당하고, 검증
     ppQueue = (LinkedQueue**)malloc(sizeof(LinkedQueue*) * radix);
     if (ppQueue == NULL) {
-        printf("占쏙옙占쏙옙, 占쌨몌옙 占쌀댐옙, radixSort()\n");
+        printf("오류, 메모리 할당, radixSort()\n");
         return;
     }
     // 각 기수에 해당하는 버킷(연결 큐)를 생성. 단, 버킷을 생성하는 도중에
@@ -29,7 +29,7 @@ void radixSort(int value[], int count, int radix, int digit) {
                 }
             }
             free(ppQueue);
-            printf("占쏙옙占쏙옙, createLinkedQueue() in radixSort()\n");
+            printf("오류, createLinkedQueue() in radixSort()\n");
             return;
         }
     }
